@@ -11,6 +11,24 @@ The main files used in the pipeline are:
 
 ## Start up the project
 
+### Setup Virtual Environment
+* Use python 3.11
+
+* Create a venv and install the requirements:
+
+```
+python -m venv venv
+pip install -r requirements.txt
+```
+Linux:
+```
+source venv/bin/activate
+```
+Windows:
+```
+./venv/Scripts/Activate
+```
+
 ### Configure aws credentials:
 
 * Use this guide to install the aws cli: 
