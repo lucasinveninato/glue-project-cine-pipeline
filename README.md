@@ -1,5 +1,13 @@
-# glue-project-cine-pipeline
-glue-project-cine-pipeline uses AWS Glue and Apache Airflow to build a data pipeline for IMDb data. It features a layered architecture: Landing (raw data), Raw (replicated data), Processed (cleaned and transformed data), Analytical (optimized for queries), and Consumption (data for reporting).
+# Description
+This project is a data pipeline that ingests data from the public IMDb database via an AWS Lambda function, storing the data in the Landing Zone and processing it through the Raw, Processed, and Curated layers using AWS Glue jobs.
+
+In the Raw layer, data from the Landing Zone is copied and transformed into Parquet format. The Processed layer involves cleaning and treating the data to make it clear and suitable for visualization. In the Curated layer, a Parquet file is created based on the processed data, incorporating several joins and rules to select and rank actors and actresses by the number of movies they have appeared in, as well as identifying their most frequent movie genre.
+
+The main files used in the pipeline are:
+
+**name_basics** : Information about actors and actresses, including the IDs of the movies they have appeared in.
+**title_basics**: Information about movies.
+**principals**: Information about movies and their cast.
 
 ## Start up the project
 
