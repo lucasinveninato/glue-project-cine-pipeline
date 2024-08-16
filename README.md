@@ -40,7 +40,7 @@ AIRFLOW_UID=50000
 docker compose up airflow-init
 docker compose up
 ```
-
+* After environment up, connect to the web server on localhost:8080 and use user: airflow and pass: airflow
 * Create aws credentials and region (example Extra: {us-east-1}) on Admin> Connections with name aws_default
 
 ### Runs
