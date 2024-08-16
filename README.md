@@ -69,7 +69,7 @@ docker compose up
 * After environment up, connect to the web server on localhost:8080 and use user: airflow and pass: airflow
 * Create aws credentials and region (example Extra: {us-east-1}) on Admin> Connections with name aws_default
 
-### Runs
+## Runs
 * The ingestion lambda runs once a month for a chronjob.
 * Dag imdb executes once a month for a chronjob.
 * Glue crawler executes once a month for a chronjob.
