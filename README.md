@@ -41,6 +41,8 @@ docker compose up airflow-init
 docker compose up
 ```
 
+* Create aws credentials and region (example Extra: {us-east-1}) on Admin> Connections with name aws_default
+
 ### Runs
 * The ingestion lambda runs once a month for a chronjob.
 * Dag imdb executes once a month for a chronjob.
