@@ -1,13 +1,7 @@
-import inspect
-import logging
-import os
-import sys
 from airflow import DAG
-from airflow.operators.python import PythonOperator
 from airflow.providers.amazon.aws.operators.glue import GlueJobOperator
 from airflow.utils.dates import days_ago
 from datetime import timedelta
-import boto3
 
 default_args = {
     'owner': 'airflow',
@@ -21,10 +15,9 @@ with DAG(
     'imdb_data_pipeline',
     default_args=default_args,
     description='DAG to process data from IMDB: Landing -> Raw -> Processed -> Curated',
-    schedule_interval='@daily',
+    schedule_interval='0 7 1 * *',
     catchup=False,
 ) as dag:
-
     landing_to_raw = GlueJobOperator(
         task_id='imdb_landing_to_raw',
         job_name='imdb_landing_to_raw',
@@ -32,7 +25,7 @@ with DAG(
         job_desc='ETL Job to convert TSV files to Parquet',
         s3_bucket='project-cine-glue-bucket',
         concurrent_run_limit=1,
-        iam_role_name= 'AwsGlueRole',
+        iam_role_name= 'project-cine-glue-role',
         region_name='us-east-1',
         create_job_kwargs={
             'GlueVersion': '2.0',
@@ -51,7 +44,7 @@ with DAG(
         job_desc='ETL Job for IMDB data',
         s3_bucket='project-cine-glue-bucket',
         concurrent_run_limit=1,
-        iam_role_name= 'AwsGlueRole',
+        iam_role_name= 'project-cine-glue-role',
         region_name='us-east-1',
         create_job_kwargs={
             'GlueVersion': '2.0',
